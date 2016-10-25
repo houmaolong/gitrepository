@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huayin.coms.mapper.CustomerMapper">
+	<resultMap id="BaseResultMap" type="com.huayin.coms.model.Customer">
+		<id column="uGuid1" property="uguid1" jdbcType="VARCHAR" />
+		<result column="sCode" property="scode" jdbcType="VARCHAR" />
+		<result column="sName" property="sname" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		uGuid1, sCode, sName
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.huayin.coms.model.CustomerExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from ele_customer
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from ele_customer
+		where uGuid1 = #{uguid1,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from ele_customer
+		where uGuid1 = #{uguid1,jdbcType=VARCHAR}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.huayin.coms.model.CustomerExample">
+		delete from ele_customer
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.huayin.coms.model.Customer">
+		insert into ele_customer (uGuid1, sCode, sName
+		)
+		values (#{uguid1,jdbcType=VARCHAR}, #{scode,jdbcType=VARCHAR},
+		#{sname,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.huayin.coms.model.Customer">
+		insert into ele_customer
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="uguid1 != null">
+				uGuid1,
+			</if>
+			<if test="scode != null">
+				sCode,
+			</if>
+			<if test="sname != null">
+				sName,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="uguid1 != null">
+				#{uguid1,jdbcType=VARCHAR},
+			</if>
+			<if test="scode != null">
+				#{scode,jdbcType=VARCHAR},
+			</if>
+			<if test="sname != null">
+				#{sname,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.huayin.coms.model.CustomerExample"
+		resultType="java.lang.Integer">
+		select count(*) from ele_customer
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update ele_customer
+		<set>
+			<if test="record.uguid1 != null">
+				uGuid1 = #{record.uguid1,jdbcType=VARCHAR},
+			</if>
+			<if test="record.scode != null">
+				sCode = #{record.scode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sname != null">
+				sName = #{record.sname,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update ele_customer
+		set uGuid1 = #{record.uguid1,jdbcType=VARCHAR},
+		sCode = #{record.scode,jdbcType=VARCHAR},
+		sName = #{record.sname,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.huayin.coms.model.Customer">
+		update ele_customer
+		<set>
+			<if test="scode != null">
+				sCode = #{scode,jdbcType=VARCHAR},
+			</if>
+			<if test="sname != null">
+				sName = #{sname,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where uGuid1 = #{uguid1,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.huayin.coms.model.Customer">
+		update ele_customer
+		set sCode = #{scode,jdbcType=VARCHAR},
+		sName = #{sname,jdbcType=VARCHAR}
+		where uGuid1 = #{uguid1,jdbcType=VARCHAR}
+	</update>
+	<select id="selectByExampleWithPage" resultMap="BaseResultMap"
+		parameterType="map">
+		select * from (
+		select
+		row_number() over
+		(
+		<if test="example.orderByClause != null">
+			order by ${example.orderByClause}
+		</if>
+		) as row_num,
+		<include refid="Base_Column_List" />
+		from ele_customer
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+		<if test="example.orderByClause != null">
+			order by ${example.orderByClause}
+		</if>
+		)
+		t where row_num between #{from} and #{to}
+	</select>
+</mapper>

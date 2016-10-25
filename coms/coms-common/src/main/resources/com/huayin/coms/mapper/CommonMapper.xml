@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huayin.coms.mapper.CommonMapper">
+	<select id="countSaleOrderByCondition" resultType="java.lang.Integer"
+		parameterType="map">
+		select count(*)
+		from web_sale_order s
+		left join web_user u on
+		s.create_user_id=u.id
+		left join Ele_Customer c on
+		c.uGuid1=u.customer_id
+		where 1=1
+		<if test="params.createUserId!=null and params.createUserId!=''">
+			and s.create_user_id=#{params.createUserId}
+		</if>
+		<if test="params.serialNumber!=null and params.serialNumber!=''">
+			and s.serial_number like '%${params.serialNumber}%'
+		</if>
+		<if test="params.customerName!=null and params.customerName!=''">
+			and c.sName like '%${params.customerName}%'
+		</if>
+		<if test="params.startTime!=null and params.startTime!=''">
+			<![CDATA[and s.create_time>=#{params.startTime} ]]>
+		</if>
+		<if test="params.endTime!=null and params.endTime!=''">
+			<![CDATA[and s.create_time<=#{params.endTime}]]>
+		</if>
+	</select>
+	<select id="selectSaleOrderByConditionWithPage" resultType="map"
+		parameterType="map">
+		select * from (
+		select
+		row_number() over
+		(order by s.id
+		desc) as row_num,
+		s.id,
+		s.serial_number as serialNumber,
+		c.sName as customerName,
+		s.link_name as linkName,
+		s.link_mobile as linkMobile,
+		address.sAddress
+		as deliverAddress,
+		s.delivery_date as deliveryDate,
+		u.name,
+		s.status,
+		s.audit_time as auditTime,
+		s.create_time as createTime,
+		s.memo
+		from
+		web_sale_order s
+		left join web_user
+		u on s.create_user_id=u.id
+		left join
+		Ele_Customer c on
+		c.uGuid1=u.customer_id
+		left join
+		Ele_Customer_Address address on
+		address.uGuid2=s.diliver_address
+		where 1=1
+		<if test="params.createUserId!=null and params.createUserId!=''">
+			and s.create_user_id=#{params.createUserId}
+		</if>
+		<if test="params.serialNumber!=null and params.serialNumber!=''">
+			and s.serial_number like '%${params.serialNumber}%'
+		</if>
+		<if test="params.customerName!=null and params.customerName!=''">
+			and c.sName like '%${params.customerName}%'
+		</if>
+		<if test="params.startTime!=null and params.startTime!=''">
+			<![CDATA[and s.create_time>=#{params.startTime} ]]>
+		</if>
+		<if test="params.endTime!=null and params.endTime!=''">
+			<![CDATA[and s.create_time<=#{params.endTime}]]>
+		</if>
+		)
+		t where row_num between #{from} and #{to}
+	</select>
+
+	<select id="countSaleOrderDetailByCondition" resultType="java.lang.Integer"
+		parameterType="map">
+		select count(*)
+		from web_sale_order_detail d
+		left join web_sale_order s
+		on d.master_id=s.id
+		left join web_user u on s.create_user_id=u.id
+		left
+		join Ele_Customer c on c.uGuid1=u.customer_id
+		where 1=1
+		<if test="params.createUserId!=null and params.createUserId!=''">
+			and s.create_user_id=#{params.createUserId}
+		</if>
+		<if test="params.serialNumber!=null and params.serialNumber!=''">
+			and s.serial_number like '%${params.serialNumber}%'
+		</if>
+		<if test="params.customerName!=null and params.customerName!=''">
+			and c.sName like '%${params.customerName}%'
+		</if>
+		<if test="params.startTime!=null and params.startTime!=''">
+			<![CDATA[and s.create_time>=#{params.startTime} ]]>
+		</if>
+		<if test="params.endTime!=null and params.endTime!=''">
+			<![CDATA[and s.create_time<=#{params.endTime}]]>
+		</if>
+	</select>
+	<select id="selectSaleOrderDetailByConditionWithPage"
+		resultType="map" parameterType="map">
+		select * from (
+		select
+		row_number() over
+		(order by s.id
+		desc) as row_num,
+		s.id,
+		s.serial_number as serialNumber,
+		c.sName as customerName,
+		s.link_name as linkName,
+		s.link_mobile as linkMobile,
+		address.sAddress
+		as deliverAddress,
+		u.name,
+		s.status,
+		s.audit_time as auditTime,
+		s.create_time as createTime,
+		d.product_name as productName,
+		d.product_qty as qty,
+		d.unit,
+		d.deliver_date as deliveryDate,
+		d.photo,
+		d.spec,
+		d.memo
+		from
+		web_sale_order_detail d
+		left join web_sale_order s on d.master_id=s.id
+		left join web_user u on s.create_user_id=u.id
+		left join
+		Ele_Customer c
+		on c.uGuid1=u.customer_id
+		left join
+		Ele_Customer_Address address on
+		address.uGuid2=s.diliver_address
+		where 1=1
+		<if test="params.createUserId!=null and params.createUserId!=''">
+			and s.create_user_id=#{params.createUserId}
+		</if>
+		<if test="params.serialNumber!=null and params.serialNumber!=''">
+			and s.serial_number like '%${params.serialNumber}%'
+		</if>
+		<if test="params.customerName!=null and params.customerName!=''">
+			and c.sName like '%${params.customerName}%'
+		</if>
+		<if test="params.startTime!=null and params.startTime!=''">
+			<![CDATA[and s.create_time>=#{params.startTime} ]]>
+		</if>
+		<if test="params.endTime!=null and params.endTime!=''">
+			<![CDATA[and s.create_time<=#{params.endTime}]]>
+		</if>
+		)
+		t where row_num between #{from} and #{to}
+	</select>
+
+
+	<update id="updateToAudited" parameterType="java.lang.Integer">
+		update web_sale_order
+		set
+		status = 'audited',
+		audit_time = GetDate()
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateToUnaudit" parameterType="java.lang.Integer">
+		update web_sale_order
+		set
+		status = 'unaudit',
+		audit_time = null
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<select id="getDetailListById" resultType="map" parameterType="java.lang.Integer">
+		select b.id, a.serial_number as serialNumber,b.product_name as
+		productName,b.spec,b.product_qty as productQty,b.unit,b.deliver_date
+		as deliverDate,b.photo,b.status,b.memo
+		from web_sale_order a inner join
+		web_sale_order_detail b on a.id=b.master_id
+		where a.id =
+		#{id,jdbcType=INTEGER}
+		order by b.id asc
+	</select>
+	<delete id="deleteByForeignKey" parameterType="java.lang.Integer">
+		delete from
+		web_sale_order_detail
+		where master_id = #{id,jdbcType=INTEGER}
+	</delete>
+
+	<select id="selectCustomerById" resultType="map" parameterType="java.lang.String">
+		select DISTINCT Customer.sCode, --客户编号
+		Customer.sName, --客户名称
+		sConnect.sContact, --联系人员
+		sConnect.sMobile, --移动手机
+		sConnect.sPhone1,
+		--联系电话
+		sAddress.sAddress, --送货地址
+		sAddress.uGuid2 as addressId --送货地址ID
+		from Ele_Customer Customer
+		left join Ele_Customer_Connect sConnect on
+		sConnect.uGuid1 =
+		Customer.uGuid1 and isnull(sConnect.bDefault,0)=1
+		left join Ele_Customer_Address sAddress on sAddress.uGuid1 =
+		Customer.uGuid1 and isnull(sAddress.bDefault,0)=1
+		where
+		Customer.uGuid1=#{customerId}
+	</select>
+
+	<select id="selectAddressByCustomerId" resultType="map"
+		parameterType="java.lang.String">
+		select uGuid1 as customerId, uGuid2 as addressId
+		,sAddress from Ele_Customer_Address
+		where uGuid1=#{customerId}
+	</select>
+	<select id="getUnitList" resultType="map">
+		select
+		e.uGuid1,e.sName
+		from Ele_Unit e
+	</select>
+	<select id="selectSaleOrderByPrimaryKey" resultType="map"
+		parameterType="java.lang.Integer">
+		select
+		s.id,s.serial_number as
+		serialNumber,c.sName as
+		customerName,s.link_name as
+		linkName,s.link_mobile as linkMobile,
+		s.diliver_address as
+		deliverAddressId,
+		address.sAddress as deliverAddress,s.delivery_date as
+		deliveryDate,u.name,s.status,s.audit_time as auditTime,s.status,s.memo
+		from
+		web_sale_order s
+		left join web_user u on s.create_user_id=u.id
+		left join
+		Ele_Customer c on c.uGuid1=u.customer_id
+		left join
+		Ele_Customer_Address
+		address on address.uGuid2=s.diliver_address
+		where 1=1 and s.id =
+		#{id,jdbcType=INTEGER}
+
+	</select>
+
+</mapper>
