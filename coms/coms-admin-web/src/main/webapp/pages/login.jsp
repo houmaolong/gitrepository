@@ -26,7 +26,7 @@
 								<div class="widget-body">
 									<div class="widget-main">
 										<h4 class="header blue lighter bigger">
-											<i class="icon-coffee green"></i> 登录
+											<i class="icon-coffee green"></i> 登录BBB
 										</h4>
 
 										<div class="space-6"></div>
