@@ -349,7 +349,7 @@ li.open .user-info{display:inline-block}}.breadcrumbs{position:relative;border-b
 .breadcrumb>li>a{display:inline-block;padding:0 4px;color:#4c8fbd}
 .breadcrumb>li+li:before{font-family:FontAwesome;font-size:14px;content:"\f105";color:#b2b6bf;margin-right:2px;padding:0 5px 0 2px;position:relative;top:1px}
 .breadcrumb .home-icon{margin-left:4px;margin-right:2px;font-size:20px;position:relative;top:2px}
-@media only screen and (max-width:991px){.breadcrumb{margin-left:90px}
+/* @media only screen and (max-width:991px){.breadcrumb{margin-left:90px} */
 .breadcrumbs.fixed,.breadcrumbs.breadcrumbs-fixed{position:relative!important;left:auto!important;right:auto!important;top:auto!important;z-index:auto!important}
 body.breadcrumbs-fixed .ace-settings-container{top:50px}}@media only screen and (max-width:480px){.breadcrumb>li>a{padding:0 1px}}@media only screen and (max-width:320px){.breadcrumb{margin-left:36px}}.container.main-container .breadcrumbs.breadcrumbs-fixed{left:auto!important;right:auto!important}
 @media(min-width:768px){.container.main-container .breadcrumbs.breadcrumbs-fixed{width:554px}
@@ -1251,7 +1251,7 @@ th,td,.table-bordered{border-radius:0!important}
 th.center,td.center{text-align:center}
 th .lbl,td .lbl{margin-bottom:0}
 th .lbl:only-child,td .lbl:only-child{vertical-align:top}
-.table-header{background-color:#307ecc;color:#FFF;font-size:14px;line-height:38px;padding-left:12px;margin-bottom:1px}
+.table-header{background-color:#307ecc;color:#FFF;font-size:14px;line-height:30px;padding-left:12px;margin-bottom:1px}
 .table-header .close{margin-right:8px;margin-top:0;opacity:.45;filter:alpha(opacity=45)}
 .table-header .close:hover{opacity:.75;filter:alpha(opacity=75)}
 .dataTables_length select{width:70px;height:25px;padding:2px 3px}
@@ -1656,7 +1656,7 @@ th .lbl:only-child,td .lbl:only-child{vertical-align:top}
 .login-layout .main-content{margin-left:0;min-height:100%;padding-left:15px;padding-right:15px}
 .login-layout label{margin-bottom:11px}
 .login-layout label.error{color:red;font-size:14px;margin-bottom:0;}
-.login-layout .widget-box{visibility:hidden;position:absolute;overflow:hidden;width:100%;border-bottom:0;box-shadow:none;padding:6px;background-color:#394557;-moz-transform:scale(0,1) translate(-150px);-webkit-transform:scale(0,1) translate(-150px);-o-transform:scale(0,1) translate(-150px);-ms-transform:scale(0,1) translate(-150px);transform:scale(0,1) translate(-150px)}
+.login-layout .widget-box{visibility:hidden;position:absolute;overflow:hidden;width:100%;border-bottom:0;box-shadow:none;padding:6px;-moz-transform:scale(0,1) translate(-150px);-webkit-transform:scale(0,1) translate(-150px);-o-transform:scale(0,1) translate(-150px);-ms-transform:scale(0,1) translate(-150px);transform:scale(0,1) translate(-150px)}
 .login-layout .widget-box.visible{visibility:visible;-moz-transform:scale(1,1) translate(0);-webkit-transform:scale(1,1) translate(0);-o-transform:scale(1,1) translate(0);-ms-transform:scale(1,1) translate(0);transform:scale(1,1) translate(0);-webkit-transition:all .3s ease;transition:all .3s ease;-o-transition:none;-webkit-transition:none}
 .login-layout .widget-box .widget-main{padding:16px 36px 36px;background:#f7f7f7}
 .login-layout .widget-box .widget-main form{margin:0}
@@ -2687,8 +2687,10 @@ th[aria-selected=true] .ui-jqgrid-sortable{color:#307ecc}
 .product-img{width:40px;height:40px}
 .product-table tbody tr td{text-align:center;margin:auto;vertical-align: middle;}
 .product-table tbody tr td input[type=text]{width:100%}
-.product-info{margin-top:-1px;margin-bottom:10px;overflow:hidden;border: 1px solid #e0e2e5;background-color: #f8fafc;}
+.product-info{margin-top:-1px;margin-bottom:10px;border: 1px solid #e0e2e5;background-color: #f8fafc;}
 .group-item{margin-bottom:8px}
 .group-item:after{clear: both}
 .group-item:before, .group-item:after {display: table;content: " ";}
+.product-table{border:none}
 .product-table tbody tr td input[type=file]{width: 68px;margin: 6px auto 0px auto;}
+.login-layout{width:100%;height:100%;margin-top: 70px;background:url(../images/bg.jpg)}

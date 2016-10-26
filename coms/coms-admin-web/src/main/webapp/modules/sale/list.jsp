@@ -18,10 +18,10 @@
 		<div class="page-header">
 			<form class="form-inline" id="search-form">
 				<label class="inline"> 制单日期： <input type="text"
-					name="params['startTime']" class="input-big"
+					id="startTime" name="params['startTime']" class="input-big"
 					placeholder="制单开始日期">-<input type="text"
 					name="params['endTime']" class="input-big"
-					placeholder="制单结束日期">
+					id="endTime" placeholder="制单结束日期">
 				<label class="inline"> 销售订单号： <input type="text"
 					name="params['serialNumber']" class="input-big"
 					placeholder="销售订单号">
@@ -310,6 +310,22 @@
         });
     </script>
 	<script type="text/javascript">
+		$('#startTime').datetimepicker({
+	          format: 'yyyy-mm-dd',
+	          autoclose: true,
+	          todayBtn: 'linked',
+	          language: 'zh-CN',
+			  minView:2,
+			  maxView:2,
+		})
+        $('#endTime').datetimepicker({
+	            format: 'yyyy-mm-dd',
+	            autoclose: true,
+	            todayBtn: 'linked',
+	            language: 'zh-CN',
+	 			minView:2,
+	 			maxView:2,
+ 	    })
         var grid_selector = "#grid-table";
         var pager_selector = "#grid-pager";
         jQuery(function($)
@@ -318,33 +334,33 @@
                 url: 'sale/list.ajax',
                 mtype: 'POST',
                 datatype: "json",
-                height: 321,
+                height: 338,
                 postData: $("#search-form").serializeJson(),
                 caption: '订单列表',
                 colNames: ['销售订单号', '客户名称', '联系人员', '联系电话', '送货地址', '交货日期', '制单人','制单日期', '审核状态', '审核时间', '备注'],
                 colModel: [{
                     name: 'serialNumber',
-                    width: 150,
+                    width: 135,
                     sortable: false
                 }, {
                     name: 'customerName',
-                    width: 200,
+                    width: 220,
                     sortable: false
                 }, {
                     name: 'linkName',
-                    width: 100,
+                    width: 70,
                     sortable: false
                 }, {
                     name: 'linkMobile',
-                    width: 120,
+                    width: 100,
                     sortable: false
                 }, {
                     name: 'deliverAddress',
-                    width: 230,
+                    width: 220,
                     sortable: false
                 }, {
                     name: 'deliveryDate',
-                    width: 120,
+                    width: 90,
                     sortable: false,
                     formatter: function(cellvalue, options, rowObject)
                     {
@@ -356,11 +372,11 @@
                     }
                 }, {
                     name: 'name',
-                    width: 100,
+                    width: 70,
                     sortable: false
                 }, {
                     name: 'createTime',
-                    width: 100,
+                    width: 90,
                     sortable: false,
                     formatter: function(cellvalue, options, rowObject)
                     {
@@ -372,7 +388,7 @@
                     }
                 }, {
                     name: 'status',
-                    width: 100,
+                    width: 90,
                     sortable: false,
                     formatter: function(cellvalue, options, rowObject)
                     {
@@ -388,7 +404,7 @@
                     }
                 }, {
                     name: 'auditTime',
-                    width: 190,
+                    width: 150,
                     sortable: false,
                     formatter: function(cellvalue, options, rowObject)
                     {
@@ -400,9 +416,11 @@
                     }
                 }, {
                     name: 'memo',
-                    width: 100,
+                    width: 150,
                     sortable: false
                 }],
+                shrinkToFit:false,
+                autoScroll: true,
                 viewrecords: true,
                 rowNum: 10,
                 rowList: [10, 20, 30],
@@ -421,7 +439,6 @@
                     window.location.href = "${ctxPath}/modules/sale/detail.jsp?id=" + id ;
                 },
                 autowidth: true
-
             });
 
             function beforeDeleteCallback(e)

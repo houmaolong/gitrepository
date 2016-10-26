@@ -32,65 +32,67 @@
 			<input id="id" name="id" type="hidden" value="${param.id }">
 			<div class="product-info">
 				<div class="space-4"></div>
-				<div class="group-item col-sm-6">
+				<div class="group-item">
+				<div class="col-sm-4">
 					<label class="col-sm-3 control-label no-padding-right"
-						for="form-field-2"> 客户名称 </label>
+						for="form-field-2"> 客户名称 </label>	
 					<div class="col-sm-9">
 						<input type="text" id="customerName" placeholder="客户名称"
-							disabled="disabled" class="col-xs-10 col-sm-10">
+							disabled="disabled" class="col-xs-12 col-sm-12">
 					</div>
-				</div>
-				<div class="group-item col-sm-6">
-					<label class="col-sm-3 control-label no-padding-right"
-						for="form-field-2"> 交货日期 </label>
-
-					<div class="col-sm-9">
-						<input type="text" id="deliveryDate" placeholder="交货日期"
-							name="deliveryDate" class="col-xs-10 col-sm-10">
-					</div>
-				</div>
-				<div class="group-item col-sm-6">
+				</div>	
+				<div class="col-sm-4">
 					<label class="col-sm-3 control-label no-padding-right"
 						for="form-field-2"> 联系人员 </label>
-
+	
 					<div class="col-sm-9">
-						<input type="text" id="linkName" placeholder="联系人员"
-							name="linkName" class="col-xs-10 col-sm-10">
+						<input type="text" id="linkName" placeholder="联系人员" name="linkName"
+							class="col-xs-12 col-sm-12">
 					</div>
-				</div>
-				<div class="group-item col-sm-6">
+				</div>	
+				<div class="col-sm-4">
+					<label class="col-sm-3 control-label no-padding-right"
+						for="form-field-2"> 联系电话 </label>
+	
+					<div class="col-sm-9">
+						<input type="text" id="linkMobile" placeholder="联系电话 "
+							name="linkMobile" class="col-xs-12 col-sm-12">
+					</div>
+				</div>	
+			</div>	
+			<div class="group-item">		
+				<div class="col-sm-4">
+					<label class="col-sm-3 control-label no-padding-right"
+						for="form-field-2"> 交货日期 </label>	
+					<div class="col-sm-9">
+						<input type="text" id="deliveryDate" placeholder="交货日期"
+							name="deliveryDate" class="col-xs-12 col-sm-12">
+					</div>
+				</div>								
+				<div class="col-sm-4">
 					<label class="col-sm-3 control-label no-padding-right"
 						for="form-field-2"> 送货地址 </label>
-
+	
 					<div class="col-sm-9">
-						<select class="col-xs-10 col-sm-10" id="diliverAddress"
+						<select class="col-xs-12 col-sm-12" id="diliverAddress"
 							name="diliverAddress">
 						</select>
 					</div>
-				</div>
-				<div class="group-item col-sm-6" style="clear:both">
-					<label class="col-sm-3 control-label no-padding-right"
-						for="form-field-2"> 联系电话 </label>
-
-					<div class="col-sm-9">
-						<input type="text" id="linkMobile" placeholder="联系电话 "
-							name="linkMobile" class="col-xs-10 col-sm-10">
-					</div>
-				</div>								
-				<div class="group-item col-sm-6">
+				</div>		
+				<div class="col-sm-4">
 					<label class="col-sm-3 control-label no-padding-right"
 						for="form-field-2"> 备注 </label>
-
 					<div class="col-sm-9">
-						<textarea class="form-control" id="memo" name="memo"
-							placeholder="说点什么。。。" style="width:100%;max-width:100%;height: 69px;"></textarea>
+						<input type="text" id="memo" name="memo"
+							placeholder="说点什么。。。" class="col-xs-12 col-sm-12"/>
 					</div>
 				</div>
+			</div>
 			</div>
 			<div class="table-header">
 				产品列表
 				<button type="button" class="btn btn-sm btn-inverse" id="add_btn"
-					style="float: right; padding: 2px 7px; margin: 4px 10px;">
+					style="float: right; padding: 2px 9px;">
 					<i class="icon-plus"></i>新增
 				</button>
 			</div>
@@ -175,11 +177,12 @@
             init();
             $(document).on("click", ".del_btn", function()
             {
-                if(window.index == 1) {
-                    layer.msg("最后一个不能删除");
-                    return;
-                }
-                window.index = window.index - 1;
+            	 if($("#tbody").children("tr").length== 1) {
+                     layer.msg("最后一个不能删除!",{
+                         time: 2000                      
+                     });
+                     return;
+                 }
                 $(this).parent().parent().remove();
             });
 

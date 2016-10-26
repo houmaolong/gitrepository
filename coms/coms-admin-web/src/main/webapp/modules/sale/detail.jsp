@@ -18,7 +18,7 @@
 	<div class="page-content" >
 		<div class="table-header">
      		订单信息
-     		<button type="button" class="btn btn-sm btn-inverse" id="edit-btn" style="float:right;padding: 2px 7px;margin: 4px 10px;">
+     		<button type="button" class="btn btn-sm btn-inverse" id="edit-btn" style="float:right;padding: 2px 9px;">
 						<i class="icon-edit"></i>编辑
 			</button>
         </div>
@@ -107,11 +107,10 @@
 			<div class="group-item">					
 				<div class="col-sm-12">
 					<label class="col-sm-1 control-label no-padding-right"
-						for="form-field-2" style="width: 87px"> 备注 </label>
-
-					<div class="col-sm-11">
-						<input type="text" id="memo" placeholder="" style="width: 983px;"
-							name="memo" class="col-xs-11 col-sm-11" disabled="disabled" >
+						for="form-field-2" class="col-xs-1 col-sm-1" style="width:8%"> 备注 </label>
+					<div class="col-sm-11" style="width:92%">
+						<input type="text" id="memo" placeholder=""
+							name="memo" class="col-xs-12 col-sm-12"  disabled="disabled" >
 					</div>
 				</div>
 			</div>

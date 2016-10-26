@@ -2,10 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
-
 <jsp:include page="/root.jsp"></jsp:include>
-
 </head>
 <body>
 	<div class="breadcrumbs" id="breadcrumbs">
@@ -18,10 +15,10 @@
 		<div class="page-header">
 			<form class="form-inline" id="search-form">
 				<label class="inline"> 制单日期： <input type="text"
-					name="params['startTime']" class="input-big"
+					id="startTime" name="params['startTime']" class="input-big"
 					placeholder="制单开始日期">-<input type="text"
 					name="params['endTime']" class="input-big"
-					placeholder="制单结束日期">
+					id="endTime" placeholder="制单结束日期">
 				<label class="inline"> 销售订单号： <input type="text"
 					name="params['serialNumber']" class="input-big"
 					placeholder="销售订单号">
@@ -39,9 +36,7 @@
 		</div>
 		<!-- /.page-header -->
 		<table id="grid-table"></table>
-
 		<div id="grid-pager"></div>
-
 	</div>
 	<jsp:include page="/foot.jsp"></jsp:include>
 	<script type="text/javascript">
@@ -70,42 +65,58 @@
         var grid_selector = "#grid-table";
         var pager_selector = "#grid-pager";
         jQuery(function($)
-        {
+        {	
+            $('#startTime').datetimepicker({
+  	            format: 'yyyy-mm-dd',
+  	            autoclose: true,
+  	            todayBtn: 'linked',
+  	            language: 'zh-CN',
+	  			minView:2,
+	  			maxView:2,
+  	        })
+  	        $('#endTime').datetimepicker({
+  	            format: 'yyyy-mm-dd',
+  	            autoclose: true,
+  	            todayBtn: 'linked',
+  	            language: 'zh-CN',
+	  			minView:2,
+	  			maxView:2,
+  	        })
             jQuery(grid_selector).jqGrid({
                 url: 'sale/detail_list.ajax',
                 mtype: 'POST',
                 datatype: "json",
-                height: 321,
+                height: 370,
                 postData: $("#search-form").serializeJson(),
                 caption: '订单明细列表',
                 colNames: ['销售订单号', '客户名称', '产品名称', '产品规格', '产品数量', '计量单位', '交货日期', '图片', '审核状态','制单日期','审核时间', '备注'],
                 colModel: [{
                     name: 'serialNumber',
-                    width: 150,
+                    width: 135,
                     sortable: false
                 }, {
                     name: 'customerName',
-                    width: 200,
+                    width: 220,
                     sortable: false
                 }, {
                     name: 'productName',
-                    width: 100,
+                    width: 120,
                     sortable: false
                 }, {
                     name: 'spec',
-                    width: 120,
-                    sortable: false
-                }, {
-                    name: 'qty',
-                    width: 120,
-                    sortable: false
-                },  {
-                    name: 'unit',
                     width: 100,
                     sortable: false
                 }, {
+                    name: 'qty',
+                    width: 80,
+                    sortable: false
+                },  {
+                    name: 'unit',
+                    width: 80,
+                    sortable: false
+                }, {
                     name: 'deliveryDate',
-                    width: 120,
+                    width: 90,
                     sortable: false,
                     formatter: function(cellvalue, options, rowObject)
                     {
@@ -131,7 +142,7 @@
                     }
                 }, {
                     name: 'status',
-                    width: 100,
+                    width: 90,
                     sortable: false,
                     formatter: function(cellvalue, options, rowObject)
                     {
@@ -147,7 +158,7 @@
                     }
                 }, {
                     name: 'createTime',
-                    width: 100,
+                    width: 90,
                     sortable: false,
                     formatter: function(cellvalue, options, rowObject)
                     {
@@ -159,7 +170,7 @@
                     }
                 },{
                     name: 'auditTime',
-                    width: 100,
+                    width: 150,
                     sortable: false,
                     formatter: function(cellvalue, options, rowObject)
                     {
@@ -171,8 +182,11 @@
                     }
                 },{
                     name: 'memo',
-                    width: 100
+                    width: 180
                 }],
+                shrinkToFit:false,
+                autoScroll: true,
+                autowidth: true,
                 viewrecords: true,
                 rowNum: 10,
                 rowList: [10, 20, 30],
@@ -213,8 +227,6 @@
                              			$('td .ace-thumbnails [data-rel="colorbox"]').colorbox(colorbox_params);
                              			$("#cboxLoadingGraphic").append("<i class='icon-spinner orange'></i>");
                 },
-                autowidth: true
-
             });
 
             function beforeDeleteCallback(e)
