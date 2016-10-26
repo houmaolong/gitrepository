@@ -104,11 +104,19 @@
 					</div>
 				</div>							
 			</div>		
-			<div class="group-item">					
-				<div class="col-sm-12">
+			<div class="group-item">	
+				<div class="col-sm-4">
+					<label class="col-sm-3 control-label no-padding-right"
+						for="form-field-2">制单时间</label>
+					<div class="col-sm-9">
+						<input type="text" id="createTime" placeholder=""
+							name="createTime" class="col-xs-12 col-sm-12" disabled="disabled">
+					</div>
+				</div>				
+				<div class="col-sm-8">
 					<label class="col-sm-1 control-label no-padding-right"
-						for="form-field-2" class="col-xs-1 col-sm-1" style="width:8%"> 备注 </label>
-					<div class="col-sm-11" style="width:92%">
+						for="form-field-2" class="col-xs-1 col-sm-1" style="width:11.8%"> 备注 </label>
+					<div class="col-sm-11" style="width:88.2%">
 						<input type="text" id="memo" placeholder=""
 							name="memo" class="col-xs-12 col-sm-12"  disabled="disabled" >
 					</div>
@@ -235,7 +243,6 @@
 	      success: function(data)
 	      {	          
 	          if(data.success == true) {
-	              
 	              $("#serialNumber").val(data.data.serialNumber);
 	              $("#customerName").val(data.data.customerName);
 	              $("#linkName").val(data.data.linkName);
@@ -243,6 +250,9 @@
 	              $("#deliverAddress").val(data.data.deliverAddress);
 	              if(data.data.deliveryDate!=null&data.data.deliveryDate!=""){
 		                $("#deliverDate").val(new Date(data.data.deliveryDate).format("yyyy-MM-dd"));
+		              }
+	              if(data.data.createTime!=null&data.data.createTime!=""){
+		                $("#createTime").val(new Date(data.data.createTime).format("yyyy-MM-dd"));
 		              }
 	              $("#name").val(data.data.name);
 	              $("#memo").val(data.data.memo);

@@ -131,7 +131,7 @@
 								name="details[0].deliverDate" class="deliverDate"></td>
 							<td>
 <!-- 								<input type="file" name="details[0].ImgPr" id="pic" /> -->
-								<div><img id="ImgPr0" width="80" height="60" src="${ctxPath}/assets/images/upload_icon.jpg"/></div>
+								<div><img id="ImgPr0" width="60" height="40" src="${ctxPath}/assets/images/upload_icon.jpg"/></div>
 								<input type="file" name="details[0].pic" data-prid="0"/>
 							</td>
 							<td><textarea id="memo" name="details[0].memo"
@@ -165,7 +165,7 @@
 	</div>
 	<jsp:include page="/foot.jsp"></jsp:include>
 	<script type="text/javascript">
-  		$("#tbody tr td input[name='details[0].pic']").uploadPreview({Img: 'ImgPr0', Width: 80, Height: 60 });
+  		$("#tbody tr td input[name='details[0].pic']").uploadPreview({Img: 'ImgPr0', Width: 60, Height: 40 });
         function init(trid)
         {
             $("#"+trid).find('.deliverDate').datetimepicker({
@@ -318,12 +318,12 @@
                                     + '<td><input type="text" id="productQty" placeholder="产品数量" name="details['+window.index+'].productQty"></td>' 
                                     + '<td><select id="unit" name="details['+window.index+'].unit" class="unit"></select></td>'
                                     + '<td><input type="text" id="deliverDate" placeholder="交期" name="details['+window.index+'].deliverDate" class="deliverDate"></td>' 
-                                    + '<td><div><img id="ImgPr'+window.index+'" width="80" height="60" src="${ctxPath}/assets/images/upload_icon.jpg"/></div>'
+                                    + '<td><div><img id="ImgPr'+window.index+'" width="60" height="40" src="${ctxPath}/assets/images/upload_icon.jpg"/></div>'
                     				+'<input type="file" name="details['+window.index+'].pic" data-prid="'+window.index+'" /></td>' 
                                     + '<td><textarea id="memo" name="details['+index+'].memo" placeholder="说点什么。。。"></textarea></td>' 
                                     + '<td><a href="javascript:;" class="del_btn red bigger-150"> <i class="icon-trash icon-only"></i></a></td></tr>';
                 $(html).appendTo("#tbody");
-                $("#tbody tr td input[name='details["+window.index+"].pic']").uploadPreview({Img: 'ImgPr'+window.index, Width: 80, Height: 60 });
+                $("#tbody tr td input[name='details["+window.index+"].pic']").uploadPreview({Img: 'ImgPr'+window.index, Width: 60, Height: 40 });
                 init("tr"+window.index);
                 window.index = window.index + 1;
             });

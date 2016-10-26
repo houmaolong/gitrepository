@@ -73,7 +73,9 @@
   	            language: 'zh-CN',
 	  			minView:2,
 	  			maxView:2,
-  	        })
+  	        }).on("changeDate",function(ev){
+  	            $('#endTime').datetimepicker("setStartDate",ev.date.format("yyyy-MM-dd"));
+  	        });
   	        $('#endTime').datetimepicker({
   	            format: 'yyyy-mm-dd',
   	            autoclose: true,
@@ -89,7 +91,7 @@
                 height: 370,
                 postData: $("#search-form").serializeJson(),
                 caption: '订单明细列表',
-                colNames: ['销售订单号', '客户名称', '产品名称', '产品规格', '产品数量', '计量单位', '交货日期', '图片', '审核状态','制单日期','审核时间', '备注'],
+                colNames: ['销售订单号', '客户名称', '产品名称', '产品规格', '产品数量', '计量单位', '交货日期', '图片', '制单人','制单日期','审核状态','审核时间', '备注'],
                 colModel: [{
                     name: 'serialNumber',
                     width: 135,
@@ -140,6 +142,22 @@
                         }
                         return a;
                     }
+                },{
+                    name: 'name',
+                    width: 100,
+                    sortable: false
+                }, {
+                    name: 'createTime',
+                    width: 90,
+                    sortable: false,
+                    formatter: function(cellvalue, options, rowObject)
+                    {
+                        if(cellvalue != null && cellvalue != "undefined") {
+                            return new Date(cellvalue).format("yyyy-MM-dd");
+                        }else {
+                            return "-";
+                        }
+                    }
                 }, {
                     name: 'status',
                     width: 90,
@@ -155,18 +173,6 @@
                             statu = "已受理"
                         }
                         return statu;
-                    }
-                }, {
-                    name: 'createTime',
-                    width: 90,
-                    sortable: false,
-                    formatter: function(cellvalue, options, rowObject)
-                    {
-                        if(cellvalue != null && cellvalue != "undefined") {
-                            return new Date(cellvalue).format("yyyy-MM-dd");
-                        }else {
-                            return "-";
-                        }
                     }
                 },{
                     name: 'auditTime',

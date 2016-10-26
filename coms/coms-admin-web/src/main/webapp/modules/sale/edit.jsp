@@ -345,9 +345,9 @@
                             			+ '<td><input type="text" id="productQty" placeholder="产品数量" name="details['+window.index+'].productQty" value='+item.productQty+'></td>' + '<td><select id="unit" name="details['+window.index+'].unit" class="unit" value='+item.unit+'></select></td>'
                             			+ '<td><input type="text" id="deliverDate" placeholder="交期" name="details[' + window.index + '].deliverDate" class="deliverDate" value=' + new Date(item.deliverDate).format("yyyy-MM-dd") + '></td>';
                             if(item.photo==undefined){
-                                html = html + '<td><div><img id="ImgPr'+window.index+'" width="80" height="60" src="${ctxPath}/assets/images/upload_icon.jpg"/></div>'+'<input type="file" name="details['+window.index+'].pic" data-prid="'+window.index+'" /></td>' ;
+                                html = html + '<td><div><img id="ImgPr'+window.index+'" width="60" height="40" src="${ctxPath}/assets/images/upload_icon.jpg"/></div>'+'<input type="file" name="details['+window.index+'].pic" data-prid="'+window.index+'" /></td>' ;
                             }else{
-                                html = html + '<td><div><img id="ImgPr'+window.index+'" width="80" height="60" src="'+item.photo+'"/></div>'+'<input type="file" name="details['+window.index+'].pic" data-prid="'+window.index+'" /></td>' 
+                                html = html + '<td><div><img id="ImgPr'+window.index+'" width="60" height="40" src="'+item.photo+'"/></div>'+'<input type="file" name="details['+window.index+'].pic" data-prid="'+window.index+'" /></td>' 
 
                             }
                             html = html	+ '<td><textarea id="memo" name="details['+index+'].memo" placeholder="说点什么。。。">' + item.memo + '</textarea></td>'
@@ -360,7 +360,7 @@
                             init("tr"+index);
                             var selectName = 'select[name="details[' + index + '].unit"]';
                             $(selectName).val(item.unit);
-                    		$("#tbody tr td input[name='details["+index+"].pic']").uploadPreview({Img: 'ImgPr'+index, Width: 80, Height: 60 });
+                    		$("#tbody tr td input[name='details["+index+"].pic']").uploadPreview({Img: 'ImgPr'+index, Width: 60, Height: 40 });
                         });
                     }
 
@@ -368,11 +368,11 @@
             });
             $("#add_btn").click(function()
             {
-                var html = '<tr id="tr'+window.index+'">' + '<td><input type="text" id="productName" placeholder="产品名称" name="details['+window.index+'].productName"></td>' + '<td><input type="text" id="spec" placeholder="产品规格 " name="details['+window.index+'].spec"></td>' + '<td><input type="text" id="productQty" placeholder="产品数量" name="details['+window.index+'].productQty"></td>' + '<td><select id="unit" name="details['+window.index+'].unit" class="unit"></select></td>' + '<td><input type="text" id="deliverDate" placeholder="交期" name="details['+window.index+'].deliverDate" class="deliverDate"></td>' + '<td><div><img id="ImgPr'+window.index+'" width="80" height="60" src="${ctxPath}/assets/images/upload_icon.jpg"/></div>'
+                var html = '<tr id="tr'+window.index+'">' + '<td><input type="text" id="productName" placeholder="产品名称" name="details['+window.index+'].productName"></td>' + '<td><input type="text" id="spec" placeholder="产品规格 " name="details['+window.index+'].spec"></td>' + '<td><input type="text" id="productQty" placeholder="产品数量" name="details['+window.index+'].productQty"></td>' + '<td><select id="unit" name="details['+window.index+'].unit" class="unit"></select></td>' + '<td><input type="text" id="deliverDate" placeholder="交期" name="details['+window.index+'].deliverDate" class="deliverDate"></td>' + '<td><div><img id="ImgPr'+window.index+'" width="60" height="40" src="${ctxPath}/assets/images/upload_icon.jpg"/></div>'
         				+'<input type="file" name="details['+window.index+'].pic" data-prid="'+window.index+'" /></td>' + '<td><textarea id="memo" name="details['+index+'].memo" placeholder="说点什么。。。"></textarea></td>' + '<td><a href="javascript:;" class="del_btn red bigger-150"> <i class="icon-trash icon-only"></i></a></td></tr>';
                 $(html).appendTo("#tbody");
                 init("tr"+window.index);
-            	$("#tbody tr td input[name='details["+window.index+"].pic']").uploadPreview({Img: 'ImgPr'+window.index, Width: 80, Height: 60 });               
+            	$("#tbody tr td input[name='details["+window.index+"].pic']").uploadPreview({Img: 'ImgPr'+window.index, Width: 60, Height: 40 });               
             	window.index = window.index + 1;                
             });
 

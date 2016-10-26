@@ -317,8 +317,11 @@
 	          language: 'zh-CN',
 			  minView:2,
 			  maxView:2,
-		})
+		}).on("changeDate",function(ev){
+            $('#endTime').datetimepicker("setStartDate",ev.date.format("yyyy-MM-dd"));
+        });
         $('#endTime').datetimepicker({
+        		startDate:$("#startTime").val(),
 	            format: 'yyyy-mm-dd',
 	            autoclose: true,
 	            todayBtn: 'linked',

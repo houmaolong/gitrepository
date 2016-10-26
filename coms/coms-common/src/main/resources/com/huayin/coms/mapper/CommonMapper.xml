@@ -20,10 +20,10 @@
 			and c.sName like '%${params.customerName}%'
 		</if>
 		<if test="params.startTime!=null and params.startTime!=''">
-			<![CDATA[and s.create_time>=#{params.startTime} ]]>
+			<![CDATA[and DATEDIFF(day,#{params.startTime},s.create_time)>=0]]>
 		</if>
-		<if test="params.endTime!=null and params.endTime!=''">
-			<![CDATA[and s.create_time<=#{params.endTime}]]>
+		<if test="params.endTime!=null and params.endTime!=''"> 
+			<![CDATA[and DATEDIFF(day,#{params.endTime},s.create_time)<=0  ]]>
 		</if>
 	</select>
 	<select id="selectSaleOrderByConditionWithPage" resultType="map"
@@ -67,11 +67,11 @@
 			and c.sName like '%${params.customerName}%'
 		</if>
 		<if test="params.startTime!=null and params.startTime!=''">
-			<![CDATA[and s.create_time>=#{params.startTime} ]]>
+			<![CDATA[and DATEDIFF(day,#{params.startTime},s.create_time)>=0]]>
 		</if>
-		<if test="params.endTime!=null and params.endTime!=''">
-			<![CDATA[and s.create_time<=#{params.endTime}]]>
-		</if>
+		<if test="params.endTime!=null and params.endTime!=''"> 
+			<![CDATA[and DATEDIFF(day,#{params.endTime},s.create_time)<=0  ]]>
+		</if> 
 		)
 		t where row_num between #{from} and #{to}
 	</select>
@@ -96,11 +96,11 @@
 			and c.sName like '%${params.customerName}%'
 		</if>
 		<if test="params.startTime!=null and params.startTime!=''">
-			<![CDATA[and s.create_time>=#{params.startTime} ]]>
+			<![CDATA[and DATEDIFF(day,#{params.startTime},s.create_time)>=0]]>
 		</if>
-		<if test="params.endTime!=null and params.endTime!=''">
-			<![CDATA[and s.create_time<=#{params.endTime}]]>
-		</if>
+		<if test="params.endTime!=null and params.endTime!=''"> 
+			<![CDATA[and DATEDIFF(day,#{params.endTime},s.create_time)<=0  ]]>
+		</if> 
 	</select>
 	<select id="selectSaleOrderDetailByConditionWithPage"
 		resultType="map" parameterType="map">
@@ -148,11 +148,11 @@
 			and c.sName like '%${params.customerName}%'
 		</if>
 		<if test="params.startTime!=null and params.startTime!=''">
-			<![CDATA[and s.create_time>=#{params.startTime} ]]>
+			<![CDATA[and DATEDIFF(day,#{params.startTime},s.create_time)>=0]]>
 		</if>
-		<if test="params.endTime!=null and params.endTime!=''">
-			<![CDATA[and s.create_time<=#{params.endTime}]]>
-		</if>
+		<if test="params.endTime!=null and params.endTime!=''"> 
+			<![CDATA[and DATEDIFF(day,#{params.endTime},s.create_time)<=0  ]]>
+		</if> 
 		)
 		t where row_num between #{from} and #{to}
 	</select>
@@ -227,6 +227,7 @@
 		serialNumber,c.sName as
 		customerName,s.link_name as
 		linkName,s.link_mobile as linkMobile,
+		s.create_time as createTime,
 		s.diliver_address as
 		deliverAddressId,
 		address.sAddress as deliverAddress,s.delivery_date as
