@@ -153,12 +153,12 @@
 		</dependency>
 
 		<!-- 代码直接调用log4j会被桥接到slf4j -->
-		<dependency>
+	<!-- 	<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>log4j-over-slf4j</artifactId>
 			<version>${slf4j.version}</version>
 			<scope>runtime</scope>
-		</dependency>
+		</dependency> -->
 		<!-- 代码直接调用common-logging会被桥接到slf4j -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
