@@ -25,6 +25,10 @@ public class SaleOrderDetail {
     private String spec;
 
     private String memo;
+    
+    private String productCode;
+    
+    private String productClass;
 
     public Integer getId() {
         return id;
@@ -107,4 +111,25 @@ public class SaleOrderDetail {
     public void setMemo(String memo) {
         this.memo = memo == null ? null : memo.trim();
     }
+
+	public String getProductCode()
+	{
+		return productCode;
+	}
+
+	public void setProductCode(String productCode)
+	{
+		this.productCode = productCode;
+	}
+
+	public String getProductClass()
+	{
+		return productClass;
+	}
+
+	public void setProductClass(String productClass)
+	{
+		this.productClass = productClass;
+	}
+    
 }
